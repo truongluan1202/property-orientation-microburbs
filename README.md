@@ -82,20 +82,28 @@ NSW2824909,8 CAWARRAH ROAD,SE
 - Transform all data to UTM coordinate system for accurate distance calculations
 - Create spatial indexes for efficient processing
 
-### 2. **Spatial Analysis with Validation**
+### 2. **Data Investigation & Quality Assessment**
+
+- **Dataset Structure Analysis**: Examine columns, data types, and geometry types
+- **Null Value Assessment**: Identify missing data patterns and their impact
+- **Coordinate System Analysis**: Critical validation of CRS and transformation to UTM
+- **Spatial Distribution**: Visualize data coverage with proper coordinate systems
+- **Key Column Validation**: Verify critical fields for analysis (coordinates, addresses)
+
+### 3. **Spatial Analysis with Validation**
 
 - **Address-to-Parcel Linking**: Use nearest neighbor joins with distance validation (≤200m threshold)
 - **Deduplication**: Keep closest address per parcel to eliminate duplicates
 - **Parcel-to-Road Linking**: Connect parcels to nearest roads with validation (≤100m threshold)
 
-### 3. **Orientation Calculation**
+### 4. **Orientation Calculation**
 
 - **Edge Extraction**: Extract all edges from parcel boundaries (handles MultiPolygons)
 - **Frontage Detection**: Find parcel edge closest to road (house frontage)
 - **Bearing Calculation**: Calculate compass direction from house centroid to frontage
 - **Validation**: Filter out unreasonable frontage distances (>50m)
 
-### 4. **Quality Assurance**
+### 5. **Quality Assurance**
 
 - **Error Handling**: Track calculation success/failure with detailed error messages
 - **Address Enhancement**: Map property IDs to proper street addresses
@@ -135,6 +143,7 @@ NSW2824909,8 CAWARRAH ROAD,SE
 
 - **Input**: WGS84 (EPSG:4326) for global compatibility
 - **Processing**: UTM (EPSG:32756) for accurate distance calculations
+- **Critical Fix**: Automatic transformation from degrees to meters for proper distance thresholds
 - **Output**: Original coordinate system preserved
 
 ### **Geometry Handling:**
@@ -145,7 +154,8 @@ NSW2824909,8 CAWARRAH ROAD,SE
 
 ### **Validation Framework:**
 
-- **Distance Thresholds**: Configurable validation parameters
+- **Distance Thresholds**: Configurable validation parameters (200m, 100m, 50m)
+- **Coordinate System Validation**: Automatic UTM transformation for accurate measurements
 - **Error Tracking**: Comprehensive failure analysis
 - **Quality Metrics**: Success rates and data completeness
 
@@ -204,15 +214,6 @@ project/
 ## 📄 License
 
 MIT License - Feel free to use, modify, and distribute.
-
-## 🤝 Contributing
-
-Contributions welcome! Please feel free to:
-
-- Submit bug reports
-- Suggest enhancements
-- Improve documentation
-- Add new features
 
 ---
 
